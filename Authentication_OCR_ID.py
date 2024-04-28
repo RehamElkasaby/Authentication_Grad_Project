@@ -6,12 +6,7 @@ pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesse
 
 #img = cv2.imread("D:\Reham\DATA\Graduation_project\OCR\data\wrap.jpg") # need to be replaced get_img function
 
-#TODO: get_img function */
-#TODO : Error Handleing -> opencv  */
-#TODO: if not 14 num -> raise Exceptions (take another img) */ 
-#TODO: imporve docstring  */
-#TODO: divide functions */
-#TODO: deepface functions 
+#TODO: solve empty rectangular contour problem
 
 def get_img_from_path(image_path):
 
@@ -61,7 +56,7 @@ def get_contours(img):
     Returns:
         MatLike: the ID image after operations(contours,warp perspective,resizing to 600*400)
     """
-    img = rotate_img(img,90)
+    #img = rotate_img(img,90)
     img_original = img.copy()
 
     # Image modification
@@ -241,14 +236,18 @@ def match_user_id_pic(ID_path,pic_path):
 #-----------------------------------------------
 
 #--------testing------
-img_path = "C:\\Users\\USER\\Documents\\Grad_project\\Authentication\\data\\RK_ID_NO_EDIT.jpg" 
-img1_path = "C:\\Users\\USER\\Documents\\Grad_project\\Authentication\\data\\rk.jpg"
-img2_path = "C:\\Users\\USER\\Documents\\Grad_project\\Authentication\\data\\wrap.output_resized.jpg"
-print(OCR_pipline(img_path))  # return integer ID_number
-print(match_user_id_pic(img1_path,img2_path))  # retrun True / False
+img_path = "C:\\Users\\USER\\Documents\\Grad_project\\Authentication\\Authentication_Grad_Project\\data\\Adel-Imam2.jpeg" 
+img1_path = "C:\\Users\\USER\\Documents\\Grad_project\\Authentication\\Authentication_Grad_Project\\data\\Adel_real.jpg"
+img2_path = "C:\\Users\\USER\\Documents\\Grad_project\\Authentication\\Authentication_Grad_Project\\data\\Adel-Imam2.jpeg"
+#print(OCR_pipline(img_path))  # return integer ID_number
+#print(match_user_id_pic(img1_path,img2_path))  # retrun True / False
 img_p = get_img_from_path(img_path)
 contoured_pic = get_contours(img_p)
-cv2.imshow('l',contoured_pic)
+cv2.imshow('Result',contoured_pic)
+th = crop_and_threshold(contoured_pic)
+cv2.imshow('thresh',th)
+print(OCR_pytesseract(th))
+print(match_user_id_pic(img1_path,img2_path))
 while(1):
     k = cv2.waitKey(1)
     if k == ord('q'):
