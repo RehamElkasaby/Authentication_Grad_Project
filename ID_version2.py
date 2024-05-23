@@ -37,17 +37,14 @@ if M is not None:
                 continue
             National_ID = int(id_str)
             print(National_ID)
-
-            
-
-            
-
-
-
-                    
     else:
                 print("No contours")
 else:
             print("No ID Card Found / No contours")
+
+test_person_path = "C:\\Users\\USER\\Documents\\Grad_project\\Authentication\\Authentication_Grad_Project\\test-dataset\\test_chris_person.jpg"
+            
+is_same_persone = match_user_id_pic(img_path,test_person_path)
+print(f"is_same_persone: {is_same_persone}")
         
 
