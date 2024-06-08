@@ -204,7 +204,6 @@ def OCR_pipline(img_path=''):
     """from ID img to ID number through applying contours and wrap prespective , cropping the image , thresholding and finally applying OCR
 
     Args:
-        img (MatLike): ID image
         img_path(string): contains image path , defaults to ''
         
     Raises:
